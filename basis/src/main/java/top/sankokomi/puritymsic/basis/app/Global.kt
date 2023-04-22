@@ -55,7 +55,7 @@ object Global {
     /**
      * [MusicApi]
      * */
-    val musicApi: MusicApi = retrofit.create()
+    internal val musicApi: MusicApi = retrofit.create()
 
     private val _user: MutableStateFlow<User?> = MutableStateFlow(null)
 
