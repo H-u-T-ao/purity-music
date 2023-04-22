@@ -1,20 +1,17 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "top.sankokomi.puritymusic"
+    namespace = "top.sankokomi.puritymsic.basis"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "top.sankokomi.puritymusic"
         minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,12 +33,20 @@ android {
 }
 
 dependencies {
-    implementation(project(":basis"))
+    // lifecycle 相关
+    api("androidx.lifecycle:lifecycle-service:2.6.1")
+    api("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    // kotlin 协程相关
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0-RC")
+    // coil 图片加载
+    api("io.coil-kt:coil:2.3.0")
+    // retrofit2 okhttp 的进一步简化使用
+    api("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.7.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
