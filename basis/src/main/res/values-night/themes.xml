@@ -4,4 +4,20 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <style name="Base.Style.TextView.Normal" parent="Widget.AppCompat.TextView">
+        <item name="android:text">Dark Mode</item>
+        <item name="android:textColor">@color/dm_text_color_normal</item>
+    </style>
+
+    <style name="Base.Style.TextView.Dimmed" parent="Widget.AppCompat.TextView">
+        <item name="android:text">Light Mode</item>
+        <item name="android:textColor">@color/lm_text_color_dimmed</item>
+    </style>
+
+    <style name="Base.Style.TextView.Highlight" parent="Widget.AppCompat.TextView">
+        <item name="android:text">Light Mode</item>
+        <item name="android:textColor">@color/lm_text_color_highlight</item>
+    </style>
+
 </resources>

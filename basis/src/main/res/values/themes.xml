@@ -3,8 +3,30 @@
     <style name="Base.Theme.PurityMusic" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="color">#000000</item>
+
     </style>
 
+    <style name="Base.Style.TextView.Normal" parent="Widget.AppCompat.TextView">
+        <item name="android:text">Light Mode</item>
+        <item name="android:textColor">@color/lm_text_color_normal</item>
+    </style>
+
+    <style name="Base.Style.TextView.Dimmed" parent="Widget.AppCompat.TextView">
+        <item name="android:text">Light Mode</item>
+        <item name="android:textColor">@color/lm_text_color_dimmed</item>
+    </style>
+
+    <style name="Base.Style.TextView.Highlight" parent="Widget.AppCompat.TextView">
+        <item name="android:text">Light Mode</item>
+        <item name="android:textColor">@color/lm_text_color_highlight</item>
+    </style>
+
+    <!-- 主题 -->
     <style name="Theme.PurityMusic" parent="Base.Theme.PurityMusic" />
+    <!-- 常文本 -->
+    <style name="Style.TextView.Normal" parent="Base.Style.TextView.Normal" />
+    <!-- 暗淡颜色文本 -->
+    <style name="Style.TextView.Dimmed" parent="Base.Style.TextView.Dimmed" />
+    <!-- 高亮文本 -->
+    <style name="Style.TextView.Highlight" parent="Base.Style.TextView.Highlight" />
 </resources>

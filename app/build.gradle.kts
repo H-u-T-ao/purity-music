@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation(project(":basis"))
+    implementation(project(":music-column"))
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

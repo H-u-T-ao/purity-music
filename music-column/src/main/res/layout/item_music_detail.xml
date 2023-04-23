@@ -2,22 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="12dp"
-    android:layout_marginVertical="8dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp">
 
     <TextView
         android:id="@+id/tv_music_item_name"
+        style="@style/Style.TextView.Highlight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:text="天窗"
-        android:textSize="16sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="陈卓璇·不降落飞行指南" />
+        android:orientation="horizontal"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:id="@+id/tv_music_item_artists"
+            style="@style/Style.TextView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="陈卓璇"
+            android:textSize="14sp" />
+
+        <TextView
+            style="@style/Style.TextView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="·"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_music_item_album"
+            style="@style/Style.TextView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="不降落飞行指南"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
 </LinearLayout>
