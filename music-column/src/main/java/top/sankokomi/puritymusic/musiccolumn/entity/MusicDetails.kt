@@ -1,7 +1,7 @@
 package top.sankokomi.puritymusic.musiccolumn.entity
 
-data class MusicDetail(
-    val songs: List<Songs>? = null,
+data class MusicDetails(
+    val songs: List<Song>? = null,
     val privileges: List<Privileges>? = null,
     val code: Int = 0
 )
@@ -30,7 +30,7 @@ data class Quality(
     val sr: Int = 0
 )
 
-data class Songs(
+data class Song(
     val name: String? = null,
     val id: Long = 0L,
     val pst: Int = 0,

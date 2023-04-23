@@ -3,14 +3,15 @@ package top.sankokomi.puritymusic.musiccolumn.net
 import android.os.SystemClock
 import retrofit2.http.GET
 import retrofit2.http.Query
-import top.sankokomi.puritymusic.musiccolumn.entity.MusicDetail
+import top.sankokomi.puritymusic.basis.net.MusicApi
+import top.sankokomi.puritymusic.musiccolumn.entity.MusicDetails
 
-interface MusicDetailApi {
+interface MusicDetailApi : MusicApi {
 
     @GET("song/detail")
     suspend fun musicDetail(
         @Query("ids") ids: String,
         @Query("timestamp") timestamp: Long = SystemClock.uptimeMillis()
-    ): MusicDetail
+    ): MusicDetails
 
 }

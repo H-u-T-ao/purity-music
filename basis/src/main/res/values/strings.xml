@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Purity Music</string>
+
+    <string name="toast_network_error_normal">网络错误</string>
 </resources>
