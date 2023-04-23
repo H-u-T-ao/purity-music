@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "top.sankokomi.puritymusic.basis"
+    namespace = "top.sankokomi.puritymusic.musiccolumn"
     compileSdk = 33
 
     defaultConfig {
@@ -33,16 +33,7 @@ android {
 }
 
 dependencies {
-    // lifecycle 相关
-    api("androidx.lifecycle:lifecycle-service:2.6.1")
-    api("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    // kotlin 协程相关
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0-RC")
-    // coil 图片加载
-    api("io.coil-kt:coil:2.3.0")
-    // retrofit2 okhttp 的进一步简化使用
-    api("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(project(":basis"))
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

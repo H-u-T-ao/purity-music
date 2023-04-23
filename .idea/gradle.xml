@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/basis" />
+            <option value="$PROJECT_DIR$/music-column" />
+            <option value="$PROJECT_DIR$/user-ui" />
           </set>
         </option>
       </GradleProjectSettings>

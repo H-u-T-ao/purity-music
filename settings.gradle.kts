@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "purity-music"
 include(":app")
 include(":basis")
+include(":music-column")
+include(":user-ui")
