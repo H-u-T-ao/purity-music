@@ -24,6 +24,7 @@ class UserFragment : BasicFragment() {
                     println("请求失败")
                 }
             }
+
         }
     }
 
