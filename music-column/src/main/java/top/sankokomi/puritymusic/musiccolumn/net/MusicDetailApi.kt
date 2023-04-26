@@ -5,6 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import top.sankokomi.puritymusic.basis.net.MusicApi
 import top.sankokomi.puritymusic.musiccolumn.entity.MusicDetails
+import top.sankokomi.puritymusic.musiccolumn.entity.MusicListDetails
 
 interface MusicDetailApi : MusicApi {
 
@@ -14,4 +15,9 @@ interface MusicDetailApi : MusicApi {
         @Query("timestamp") timestamp: Long = SystemClock.uptimeMillis()
     ): MusicDetails
 
+    //获取歌单详情
+    @GET("playlist/detail")
+    suspend fun musicListDetail(
+        @Query("ids") ids: String,
+    ):MusicListDetails
 }
