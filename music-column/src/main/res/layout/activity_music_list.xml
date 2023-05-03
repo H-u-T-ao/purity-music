@@ -1,129 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MusicList.MusicListActivity"
-    android:fitsSystemWindows="true">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll"
-                android:padding="12dp"
-                >
-                <View
-                    android:id="@+id/view1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_music_list_cover"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_launcher_background"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view1"
-                    app:layout_constraintWidth="0.3"
-                    app:cardCornerRadius="10dp">
-                    <ImageView
-                        android:id="@+id/iv_music_list_cover"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_launcher_background" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/tv_music_list_title"
-                    android:text="【爱情三部曲】恋， 阳光在，你在，我在"
-                    android:textStyle="bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:breakStrategy="balanced"
-                    android:hyphenationFrequency="full"
-                    app:layout_constraintWidth="0.4"
-                    app:layout_constraintTop_toTopOf="@+id/cv_music_list_cover"
-                    app:layout_constraintStart_toEndOf="@+id/cv_music_list_cover"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-                <TextView
-                    android:id="@+id/tv_music_list_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="爱情三部曲歌单之二，歌声传情之 《恋， 阳光在，你在，我在》。属于两人共享，互传爱意的陶醉世界，可以平静，可以浓烈，可以默默相望脉脉含情，也可以相拥而舞共赞此生。 如果你不适用这张单，请参考另外两部曲+番外篇，总有一部属于你！"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    app:layout_constraintStart_toStartOf="@+id/cv_music_list_cover"
-                    app:layout_constraintTop_toBottomOf="@+id/cv_music_list_cover"/>
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/tv_music_list_description"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_collapseMode="pin"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_return"
-                    android:layout_marginStart="12dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:text="歌单"/>
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:padding="12dp"
-           android:layout_width="match_parent"
-           android:layout_height="50dp">
-           <ImageView
-               android:id="@+id/iv_play_all"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:background="@drawable/ic_music_list_play_all"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintBottom_toBottomOf="parent"/>
-           <TextView
-               android:text="播放全部"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="10dp"
-               app:layout_constraintStart_toEndOf="@+id/iv_play_all"
-               app:layout_constraintTop_toTopOf="@+id/iv_play_all"
-               app:layout_constraintBottom_toBottomOf="@+id/iv_play_all"/>
-           <ImageView
-               android:id="@+id/iv_music_list_down"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:background="@drawable/ic_music_list_download"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintBottom_toBottomOf="parent"/>
-       </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <top.sankokomi.puritymusic.musiccolumn.MusicColumn
-        android:id="@+id/musiccolumn_music_list"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/dd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:fitsSystemWindows="true"
+        tools:context=".musiclist.MusicListActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        app:layout_scrollFlags="scroll">
+
+                        <View
+                            android:id="@+id/view1"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_music_list_cover"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_launcher_background"
+                            app:cardCornerRadius="10dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view1"
+                            app:layout_constraintWidth="0.1">
+
+                            <ImageView
+                                android:id="@+id/iv_music_list_cover"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:background="@drawable/ic_launcher_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/tv_music_list_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:breakStrategy="balanced"
+                            android:hyphenationFrequency="full"
+                            android:text="【爱情三部曲】恋， 阳光在，你在，我在"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/cv_music_list_cover"
+                            app:layout_constraintTop_toTopOf="@+id/cv_music_list_cover"
+                            app:layout_constraintWidth="0.4" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cd_music_list_creator"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/white"
+                            android:padding="5dp"
+                            app:cardCornerRadius="306dp"
+                            app:layout_constraintStart_toStartOf="@+id/tv_music_list_title"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_music_list_title"
+                            app:layout_constraintBottom_toBottomOf="@+id/cv_music_list_cover">
+
+                            <ImageView
+                                android:id="@+id/iv_music_list_creator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/tv_music_list_creator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/cd_music_list_creator"
+                            app:layout_constraintStart_toEndOf="@+id/cd_music_list_creator"
+                            app:layout_constraintTop_toTopOf="@+id/cd_music_list_creator" />
+
+                        <TextView
+                            android:id="@+id/tv_music_list_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="爱情三部曲歌单之二，歌声传情之 《恋， 阳光在，你在，我在》。属于两人共享，互传爱意的陶醉世界，可以平静，可以浓烈，可以默默相望脉脉含情，也可以相拥而舞共赞此生。 如果你不适用这张单，请参考另外两部曲+番外篇，总有一部属于你！"
+                            app:layout_constraintStart_toStartOf="@+id/cv_music_list_cover"
+                            app:layout_constraintTop_toBottomOf="@+id/cv_music_list_cover" />
+
+                        <LinearLayout
+                            android:id="@+id/lly_music_list_fun"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_music_list_description">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_ellipse_music_list_button"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_music_list_share" />
+
+                                <TextView
+                                    android:id="@+id/tv_music_list_share"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_ellipse_music_list_button"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_music_list_chat" />
+
+                                <TextView
+                                    android:id="@+id/tv_music_list_chat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_ellipse_music_list_button"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_music_list_collect" />
+
+                                <TextView
+                                    android:id="@+id/tv_music_list_collect"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/background_ellipse_up" />
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:layout_collapseMode="pin">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/ic_return" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="歌单" />
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_play_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/ic_music_list_play_all"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="播放全部"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_play_all"
+                    app:layout_constraintStart_toEndOf="@+id/iv_play_all"
+                    app:layout_constraintTop_toTopOf="@+id/iv_play_all" />
+
+                <ImageView
+                    android:id="@+id/iv_music_list_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/ic_music_list_download"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <top.sankokomi.puritymusic.musiccolumn.MusicColumn
+            android:id="@+id/musiccolumn_music_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout_music_list_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

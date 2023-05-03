@@ -18,6 +18,8 @@ interface MusicDetailApi : MusicApi {
     //获取歌单详情
     @GET("playlist/detail")
     suspend fun musicListDetail(
-        @Query("ids") ids: String,
-    ):MusicListDetails
+        @Query("id") id: Int,
+        @Query("timestamp") timestamp: Long = SystemClock.uptimeMillis()
+    ): MusicListDetails
+
 }

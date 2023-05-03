@@ -162,7 +162,7 @@ data class Subscriber(
     val province: Int,
     val remarkName: Any,
     val signature: String,
-    val userId: Int,
+    val userId: String,
     val userType: Int,
     val vipType: Int
 )
@@ -293,7 +293,7 @@ data class ChargeInfo(
     val rate: Int
 )
 
-data class  FreeTrialPrivilegeMusicList(
+data class FreeTrialPrivilegeMusicList(
     val listenType: Any,
     val resConsumable: Boolean,
     val userConsumable: Boolean
