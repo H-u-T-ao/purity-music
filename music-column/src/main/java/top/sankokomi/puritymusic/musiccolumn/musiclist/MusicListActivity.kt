@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
@@ -47,7 +45,7 @@ class MusicListActivity : BasicActivity() {
             R.layout.activity_music_list
         )
         coroutineScope.launch {
-            Api<MusicDetailApi>().request { musicListDetail(mMusicListId) } response {
+            Api<MusicDetailApi>().request { playListDetail(mMusicListId) } response {
                 success {
                     runBlocking<Unit> {
                         launch(Dispatchers.IO) { // 在 IO 线程中启动一个协程
@@ -82,10 +80,27 @@ class MusicListActivity : BasicActivity() {
                             }
                         }
                     }
-
-                }
-                failure {
-
+                    binding.ivMusicListCover.setOnClickListener { click ->
+                        // 创建 FragmentManager 对象
+                        val fragmentManager: FragmentManager = supportFragmentManager
+                        // 开始一个新的事务
+                        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+                        // 创建一个新的 Fragment 实例并添加到容器中
+                        val myFragment = MusicListDescriptionFragment()
+                        //创建资源绑定器bundle
+                        val bundle = Bundle()
+                        //添加数据到资源绑定器
+                        bundle.putString("titlePhoto", it.playlist.coverImgUrl)
+                        bundle.putString("title", it.playlist.name)
+                        bundle.putString("titleDescription", it.playlist.description)
+                        //将资源绑定器添加到fragment对象中
+                        myFragment.arguments = bundle
+                        transaction.replace(R.id.dd, myFragment)
+                        //返回键事件
+                        transaction.addToBackStack(null);
+                        // 提交事务
+                        transaction.commit()
+                    }
                 }
             }
         }
@@ -109,19 +124,6 @@ class MusicListActivity : BasicActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.tvMusicListDescription.setOnClickListener {
-            // 创建 FragmentManager 对象
-            val fragmentManager: FragmentManager = supportFragmentManager
-            // 开始一个新的事务
-            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-            // 创建一个新的 Fragment 实例并添加到容器中
-            val myFragment = MusicListDescriptionFragment()
-            transaction.replace(R.id.dd, myFragment)
-            //返回键事件
-            transaction.addToBackStack(null);
-            // 提交事务
-            transaction.commit()
-        }
     }
 
 
