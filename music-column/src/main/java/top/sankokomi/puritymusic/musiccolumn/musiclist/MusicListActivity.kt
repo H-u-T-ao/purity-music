@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
@@ -19,7 +18,6 @@ import coil.size.Scale
 import coil.size.Size
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import top.sankokomi.puritymusic.basis.app.Api
 import top.sankokomi.puritymusic.basis.app.Global.coroutineScope
@@ -40,46 +38,43 @@ class MusicListActivity : BasicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_music_list)
-        binding = DataBindingUtil.setContentView<ActivityMusicListBinding>(
+        binding = DataBindingUtil.setContentView(
             this,
             R.layout.activity_music_list
         )
         coroutineScope.launch {
             Api<MusicDetailApi>().request { playListDetail(mMusicListId) } response {
                 success {
-                    runBlocking<Unit> {
-                        launch(Dispatchers.IO) { // 在 IO 线程中启动一个协程
-                            launch {
-                                Palette.from(getImageBitmapByUrl(it.playlist.coverImgUrl))
-                                    .generate { palette ->
-                                        val color = palette?.getDominantColor(
-                                            ContextCompat.getColor(
-                                                this@MusicListActivity,
-                                                top.sankokomi.puritymusic.basis.R.color.gray
-                                            )
+                    lifecycleScope.launch(context = Dispatchers.IO) { // 在 IO 线程中启动一个协程
+                        withContext(Dispatchers.Main) { // 切换到主线程
+                            Palette.from(getImageBitmapByUrl(it.playlist.coverImgUrl))
+                                .generate { palette ->
+                                    val color = palette?.getDominantColor(
+                                        ContextCompat.getColor(
+                                            this@MusicListActivity,
+                                            top.sankokomi.puritymusic.basis.R.color.gray
                                         )
-                                        // 在这里使用提取出来的颜色进行相应的操作
-                                    }
+                                    )
+                                    // 在这里使用提取出来的颜色进行相应的操作
+                                }
+                            binding.ivMusicListCover.load(it.playlist.coverImgUrl) {
+                                scale(Scale.FILL)
+                                Size(50, 50)
                             }
-                            withContext(Dispatchers.Main) { // 切换到主线程
-                                binding.ivMusicListCover.load(it.playlist.coverImgUrl) {
-                                    scale(Scale.FILL)
-                                    Size(50, 50)
-                                }
-                                binding.ivMusicListCreator.load(it.playlist.creator.avatarUrl) {
-                                    scale(Scale.FILL)
-                                }
-                                binding.tvMusicListCreator.text = it.playlist.creator.nickname
-                                binding.tvMusicListShare.text = it.playlist.shareCount.toString()
-                                binding.tvMusicListChat.text = it.playlist.commentCount.toString()
-                                binding.tvMusicListCollect.text =
-                                    it.playlist.subscribedCount.toString()
-                                binding.tvMusicListTitle.text = it.playlist.name
-                                binding.tvMusicListDescription.text = it.playlist.description
+                            binding.ivMusicListCreator.load(it.playlist.creator.avatarUrl) {
+                                scale(Scale.FILL)
+                            }
+                            binding.tvMusicListCreator.text = it.playlist.creator.nickname
+                            binding.tvMusicListShare.text = it.playlist.shareCount.toString()
+                            binding.tvMusicListChat.text = it.playlist.commentCount.toString()
+                            binding.tvMusicListCollect.text =
+                                it.playlist.subscribedCount.toString()
+                            binding.tvMusicListTitle.text = it.playlist.name
+                            binding.tvMusicListDescription.text = it.playlist.description
 
-                            }
                         }
                     }
+
                     binding.ivMusicListCover.setOnClickListener { click ->
                         // 创建 FragmentManager 对象
                         val fragmentManager: FragmentManager = supportFragmentManager
@@ -97,7 +92,7 @@ class MusicListActivity : BasicActivity() {
                         myFragment.arguments = bundle
                         transaction.replace(R.id.dd, myFragment)
                         //返回键事件
-                        transaction.addToBackStack(null);
+                        transaction.addToBackStack(null)
                         // 提交事务
                         transaction.commit()
                     }
@@ -126,8 +121,7 @@ class MusicListActivity : BasicActivity() {
         super.onResume()
     }
 
-
-    suspend fun Context.getImageBitmapByUrl(url: String): Bitmap {
+    private suspend fun Context.getImageBitmapByUrl(url: String): Bitmap {
         val request = ImageRequest.Builder(this)
             .data(url)
             .allowHardware(false)
@@ -135,6 +129,5 @@ class MusicListActivity : BasicActivity() {
         val result = (imageLoader.execute(request) as SuccessResult).drawable
         return (result as BitmapDrawable).bitmap
     }
-
 
 }
